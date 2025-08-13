@@ -1,7 +1,10 @@
 @use 'variables' as *;
 @use 'calendar' as *;
 
-/* Centralizar o conteúdo do body */
+.calendar {
+  grid-template-columns: repeat(7, variables.$day-size);
+}
+
 body {
   margin: 0;
   display: flex;

@@ -1,0 +1,18 @@
+/* Error: Undefined variable.
+ *    ,
+ * 11 |   grid-template-columns: repeat(7, $day-size);
+ *    |                                    ^^^^^^^^^
+ *    '
+ *   src\styles\_calendar.scss 11:36  @use
+ *   src\styles\index.scss 2:1        root stylesheet */
+
+body::before {
+  font-family: 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Fira Mono',
+    'Droid Sans Mono', monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: Undefined variable.\a    \2577 \a 11 \2502    grid-template-columns: repeat(7, $day-size);\a    \2502                                     ^^^^^^^^^\a    \2575 \a   src\\styles\\_calendar.scss 11:36  @use\a   src\\styles\\index.scss 2:1        root stylesheet';
+}
