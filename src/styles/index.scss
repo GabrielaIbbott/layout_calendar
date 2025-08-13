@@ -3,6 +3,7 @@
 
 /* Centralizar o conteúdo do body */
 body {
+  margin: 0;
   display: flex;
   justify-content: center; /* centraliza horizontalmente */
   align-items: center; /* centraliza verticalmente */
