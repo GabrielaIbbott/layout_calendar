@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, $day-size);
+  gap: $gap;
+  padding: $padding;
+  justify-content: center;
+  counter-reset: day-counter;
+}
+
+.calendar__day {
+  width: $day-size;
+  height: $day-size;
+  background-color: $background-day;
+  border: 1px solid $border-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition:
+    transform $animation-duration,
+    background-color $animation-duration;
+  counter-increment: day-counter;
+
+  &::before {
+    content: counter(day-counter);
+    font-size: $font-size-day;
+    color: black;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+
+  &:hover {
+    background-color: $hover-color;
+    transform: translateY(-20px);
+    cursor: pointer; // cursor só no hover
+  }
+}
+
+// Modificador: início do mês
+@each $start, $name in (1: sun, 2: mon, 3: tue, 4: wed, 5: thu, 6: fri, 7: sat)
+{
+  .calendar--start-day-#{$name} > .calendar__day:nth-child(1) {
+    grid-column-start: $start;
+  }
+}
+
+// Modificador: quantidade de dias
+@for $days from 28 through 31 {
+  .calendar--month-length-#{$days}
+    > .calendar__day:nth-child(n + #{ $days + 1 }) {
+    display: none;
+  }
+}
