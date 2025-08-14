@@ -1,3 +1,5 @@
+@use './variables';
+
 *,
 *::before,
 *::after {
@@ -8,52 +10,47 @@
 
 .calendar {
   display: grid;
-  grid-template-columns: repeat(7, $day-size);
-  gap: $gap;
-  padding: $padding;
+  grid-template-columns: repeat(7, variables.$day-size);
+  gap: variables.$gap;
+  padding: variables.$padding;
   justify-content: center;
   counter-reset: day-counter;
 }
 
 .calendar__day {
-  width: $day-size;
-  height: $day-size;
-  background-color: $background-day;
-  border: 1px solid $border-color;
+  width: variables.$day-size;
+  height: variables.$day-size;
+  background-color: variables.$background-day;
+  border: 1px solid variables.$border-color;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   transition:
-    transform $animation-duration,
-    background-color $animation-duration;
+    transform variables.$animation-duration,
+    background-color variables.$animation-duration;
   counter-increment: day-counter;
 
   &::before {
     content: counter(day-counter);
-    font-size: $font-size-day;
+    font-size: variables.$font-size-day;
     color: black;
-    position: absolute;
-    top: 5px;
-    left: 5px;
   }
 
   &:hover {
-    background-color: $hover-color;
-    transform: translateY(-20px);
-    cursor: pointer; // cursor só no hover
+    background-color: variables.$hover-color;
+    transform: translateY(-10px);
+    cursor: pointer;
   }
 }
 
-// Modificador: início do mês
-@each $start, $name in (1: sun, 2: mon, 3: tue, 4: wed, 5: thu, 6: fri, 7: sat)
+@each $start, $name in (1: mon, 2: tue, 3: wed, 4: thu, 5: fri, 6: sat, 7: sun)
 {
   .calendar--start-day-#{$name} > .calendar__day:nth-child(1) {
     grid-column-start: $start;
   }
 }
 
-// Modificador: quantidade de dias
 @for $days from 28 through 31 {
   .calendar--month-length-#{$days}
     > .calendar__day:nth-child(n + #{ $days + 1 }) {
